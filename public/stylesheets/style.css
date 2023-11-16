@@ -1,8 +1,24 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 24px  Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #05394e;
 }
+.tigerAttr {
+  background-color: rgb(94, 231, 185);
+  width: 120px;
+  }
+
+  .tigerForm {
+    background-color: rgb(47, 3, 61);
+    width: 300px;
+  }
+  h1{
+    background-color: rgb(62, 154, 182);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif green;
+  }
+  div{
+    background-color: rgb(3, 194, 242);
+  }

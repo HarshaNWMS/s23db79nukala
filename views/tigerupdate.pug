@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to update
+  else
+    - let tigerid = toShow._id
+    - let tiger_color = toShow.tiger_color
+    - let tiger_breed = toShow.tiger_breed
+    - let tiger_price = toShow.tiger_price
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{tigerid}
+    - let actionid = "/resource/tiger/" + tigerid
+    form(id='tigerForm', action= actionid, method="PUT")
+      div.form-group
+        label.tigerAttr(for='tiger_color') tiger color
+        input#tiger_color(type='text', name='tiger_color', value= tiger_color)
+      div.form-group
+        label.tigerAttr(for='tiger_breed') tiger breed
+        input#size(type='text', name='tiger_breed', value= tiger_breed)
+      div.form-group
+        label.tigerAttr(for='tiger_price') tiger price
+        input#cost(type='number', name='tiger_price', value= tiger_price)
+      input(type="submit")
+      script.
+        document.forms['tigerForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show user that form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeeded");
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error);
+          });
+        });
