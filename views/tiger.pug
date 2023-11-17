@@ -1,19 +1,17 @@
 extends layout
-
 block content
-  h1= title
-  - const results = [{tiger_color:"brown",tiger_breed:"Flemish Giant tiger",tiger_price:20000},{tiger_color:"white",tiger_breed:"Angora tiger",tiger_price:55000},{tiger_color:"black",tiger_breed:" Panthera",tiger_price:40000}]
-       
-
-  .container-fluid
-    .row
-      each tiger,index in results
-        div(class="col-sm-2" onclick=`buy(${index})`)       
-          h3 #{tiger.tiger_breed}
-          p tiger Color #{tiger.tiger_color}
-          p tiger price: $#{tiger.tiger_price}
-        
-  script.
-    function buy(index) {
-        alert(`You purchased : ${index}`)
-    }
+ h1= title
+ - let items = results;
+   each item in items
+    - let destination = `dispatch("/tiger/update?id=${item._id}")`
+      div
+       p tigerName  - #{item.tigerName}
+       p tigerCost  - #{item.tigerCost}
+       p Description - #{item.Description}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update
+       br
+       br
+ script.
+  function dispatch(path){
+   window.location.href=path
+  }
